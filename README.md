@@ -1,6 +1,8 @@
 # Publish Shopify theme for GitHub Actions
 
-This GitHub action is part of a list of my Actions : https://github.com/pgrimaud/actions.
+Big thanks to : https://github.com/pgrimaud/actions.
+
+I forked it so I could change up the docker build to not upload all the files everytime, only the edits. 
 
 ## Usage
 
@@ -11,7 +13,7 @@ To use the action simply add the following lines to your workflow .yml file.
   steps:
       - uses: actions/checkout@v1
       - name: Shopify
-        uses: pgrimaud/action-shopify@master
+        uses: benwebdev/action-shopify@master
         env:
           SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
           SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
@@ -35,41 +37,3 @@ Then you'll need to provide some secrets to use the action.
 ### Optional Arguments
 
 The optional argument you can add to improve theme deployment. Optional args are available on [Theme Kit help](https://shopify.github.io/themekit/configuration/#flags).
-
-#### Examples
-
-```yaml
-...
-  steps:
-      - uses: actions/checkout@v1
-      - name: Shopify
-        uses: pgrimaud/action-shopify@master
-        env:
-          SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
-          SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
-          SHOPIFY_THEME_ID: ${{ secrets.SHOPIFY_THEME_ID }}
-          THEME_PATH: ${{ secrets.THEME_PATH }}
-        with:
-          args: --ignored-file=sections/*
-```
-
-Your can also combine multiple arguments : 
-
-```yaml
-...
-  steps:
-      - uses: actions/checkout@v1
-      - name: Shopify
-        uses: pgrimaud/action-shopify@master
-        env:
-          SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
-          SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
-          SHOPIFY_THEME_ID: ${{ secrets.SHOPIFY_THEME_ID }}
-          THEME_PATH: ${{ secrets.THEME_PATH }}
-        with:
-          args: --ignored-file=sections/* --timeout=30
-```
-
-## License
-
-The Dockerfile and associated scripts and documentation in this project are released under the [MIT License](LICENSE).
